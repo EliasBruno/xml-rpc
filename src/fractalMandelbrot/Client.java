@@ -23,24 +23,27 @@ public class Client {
 			params.addElement(new Integer(height));
 			Object result = server.execute("atividade2.fractalMandelbrot", params);
 
-			Vector sum = ((Vector) result);
-			genarate(sum);
+			Vector vector = ((Vector) result);
+			populate(vector);
 
 		} catch (Exception exception) {
 			System.err.println("JavaClient: " + exception);
 		}
 	}
 
-	public static void genarate(Vector vector) throws IOException {
-		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+	public static void populate(Vector vector){
+		try {
+			BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
-		for (int i = 0; i < vector.size(); i++) {
-			String[] new_vector = vector.get(i).toString().split("_");
+			for (int i = 0; i < vector.size(); i++) {
+				String[] new_vector = vector.get(i).toString().split("_");
 
-			image.setRGB(Integer.parseInt(new_vector[0]), Integer.parseInt(new_vector[1]),
-					Integer.parseInt(new_vector[2]));
+				image.setRGB(Integer.parseInt(new_vector[0]), Integer.parseInt(new_vector[1]),
+						Integer.parseInt(new_vector[2]));
+			}
+			ImageIO.write(image, "png", new File("mandelbrotOneServer.png"));
+		} catch (Exception e) {
+			System.err.println("Erro Populate: " + e.getMessage());
 		}
-		ImageIO.write(image, "png", new File("mandelbrot.png"));
-
 	}
 }

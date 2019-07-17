@@ -1,23 +1,13 @@
 package fatorial;
 
-import java.math.BigInteger;
-
 import helma.xmlrpc.WebServer;
 
-public class Server4 {
+public class Server4 extends Fatorial {
 
-	public String fatorial(String end, String start) {
-
-		BigInteger numeroFactorial = new BigInteger(end.toString());
-		BigInteger limitFactorial = new BigInteger(start.toString());
-		BigInteger result = BigInteger.ONE;
-
-		while (!numeroFactorial.equals(limitFactorial)) {
-			result = result.multiply(numeroFactorial);
-			numeroFactorial = numeroFactorial.subtract(BigInteger.ONE);
-		}
-		// System.out.println("Valor: "+result);
-		return result.toString();
+	@Override
+	public String calculate(String end, String start) {
+		// TODO Auto-generated method stub
+		return super.calculate(end, start);
 	}
 
 	public static void main(String[] args) {

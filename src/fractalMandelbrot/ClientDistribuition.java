@@ -38,7 +38,7 @@ public class ClientDistribuition extends Thread {
 			thread3.join();
 			thread4.join();
 
-			ImageIO.write(image, "png", new File("mandelbrot.png"));
+			ImageIO.write(image, "png", new File("mandelbrotMultiServer.png"));
 
 		} catch (Exception exception) {
 			System.err.println("JavaClient: " + exception);

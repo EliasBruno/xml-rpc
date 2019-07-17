@@ -70,31 +70,30 @@ public class ClientDistribuition extends Thread {
 			thread3.join();
 			thread4.join();
 
-			// FileWriter fileSum = new FileWriter("sum.txt");
-			// PrintWriter WfileSum = new PrintWriter(fileSum);
-			System.out.println("Total: " + vectorResultSoma.size());
+			FileWriter fileSum = new FileWriter("sum.txt");
+			PrintWriter WfileSum = new PrintWriter(fileSum);
 			String text = "";
 			for (int i = 0; i < vectorResultSoma.size(); i++) {
 				String resultSum = vectorResultSoma.get(i).toString();
 				if (!resultSum.isEmpty()) {
 					text = resultSum.replaceAll(",", ";").replaceAll("]", "/");
-					// WfileSum.printf(text);
+					WfileSum.printf(text);
 				}
-				System.out.println("A soma é: " + text);
+				System.out.println("A soma é: " + resultSum);
 			}
-			// fileSum.close();
+			fileSum.close();
 
-			// FileWriter fileMulti = new FileWriter("multi.txt");
-			// PrintWriter WfileMulti = new PrintWriter(fileMulti);
+			FileWriter fileMult = new FileWriter("multi.txt");
+			PrintWriter WfileMult = new PrintWriter(fileMult);
 			for (int i = 0; i < vectorResultMulti.size(); i++) {
 				String resultMult = vectorResultMulti.get(i).toString();
 				if (!resultMult.isEmpty()) {
 					text = resultMult.replaceAll(",", ";").replaceAll("]", "/");
-					// WfileMulti.printf(text);
+					WfileMult.printf(text);
 				}
-				System.out.println("O produto é: " + text);
+				System.out.println("O produto é: " + resultMult);
 			}
-			// fileMulti.close();
+			fileMult.close();
 
 		} catch (Exception exception) {
 			System.err.println("JavaClient: " + exception);
@@ -121,6 +120,7 @@ public class ClientDistribuition extends Thread {
 			}
 
 		} catch (Exception e) {
+			System.err.println("Erro Thread: " + e.getMessage());
 		}
 	}
 
@@ -131,15 +131,16 @@ public class ClientDistribuition extends Thread {
 			params.addElement(end);
 			params.addElement(vetor1);
 			params.addElement(vetor2);
+			params.addElement(4);
 
 			XmlRpcClient xmlRpcClient = new XmlRpcClient("http://localhost:" + port + "/RPC2");
 			Object resultSum = xmlRpcClient.execute("atividade3.sum", params);
 			vectorResultSoma.add(resultSum);
 
-			Object resultMulti = xmlRpcClient.execute("atividade3.mult", params);
-			vectorResultMulti.add(resultMulti);
+			Object resultMult = xmlRpcClient.execute("atividade3.mult", params);
+			vectorResultMulti.add(resultMult);
 		} catch (Exception e) {
-			System.err.println("Error: " + e.getMessage());
+			System.err.println("Erro Call Server: " + e.getMessage());
 		}
 	}
 }

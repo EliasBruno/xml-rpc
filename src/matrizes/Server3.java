@@ -4,17 +4,17 @@ import java.util.Vector;
 
 import helma.xmlrpc.WebServer;
 
-public class Server3 extends Calculate {
+public class Server3 extends Matriz {
 	@Override
-	public Vector sum(int start, int end, Vector soma1, Vector soma2) {
+	public Vector sum(int start, int end, Vector soma1, Vector soma2, int dim) {
 		// TODO Auto-generated method stub
-		return super.sum(start, end, soma1, soma2);
+		return super.sum(start, end, soma1, soma2, dim);
 	}
 
 	@Override
-	public Vector mult(Integer start, Integer end, Vector mult1, Vector mult2) {
+	public Vector mult(int start, int end, Vector mult1, Vector mult2, int dim) {
 		// TODO Auto-generated method stub
-		return super.mult(start, end, mult1, mult2);
+		return super.mult(start, end, mult1, mult2, dim);
 	}
 
 	public static void main(String[] args) {

@@ -56,7 +56,7 @@ public class ClientDistribuition extends Thread {
 
 	public void run() {
 		try {
-			String port = "", handler = "";
+			String port = "";
 			BigInteger valor = BigInteger.ONE;
 			BigInteger start = BigInteger.ONE;
 			BigInteger end = BigInteger.ONE;
@@ -85,17 +85,13 @@ public class ClientDistribuition extends Thread {
 				break;
 			}
 
-			// System.out.println("W e H"+start +" | "+ end);
 			XmlRpcClient xmlRpcClient = new XmlRpcClient("http://localhost:" + port + "/RPC2");
 			Vector params = new Vector();
 
 			params.addElement(end.toString());
 			params.addElement(start.toString());
 			Object result = xmlRpcClient.execute("atividade1.fatorial", params);
-			// vetor = ((Vector) result);
 			vetor.add(result);
-			// System.out.println("Server: "+this.server+" Inicio: "+start+" Fim: "+end+"
-			// Resultado: "+ result);
 		} catch (Exception e) {
 		}
 	}

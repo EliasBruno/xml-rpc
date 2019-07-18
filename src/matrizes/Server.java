@@ -36,11 +36,11 @@ public class Server {
 		return resultado;
 	}
 
-	public int[][] convertMatrixToBi(Vector vetor, int tam) {
-		int altura = vetor.size() / tam;
-		int[][] ret = new int[altura][tam];
+	public int[][] convertMatrixToBi(Vector vetor, int largura) {
+		int altura = vetor.size() / largura;
+		int[][] ret = new int[altura][largura];
 		for (int i = 0; i < vetor.size(); i++) {
-			ret[i / tam][i % tam] = (int) vetor.get(i);
+			ret[i / largura][i % largura] = (int) vetor.get(i);
 		}
 		return ret;
 	}

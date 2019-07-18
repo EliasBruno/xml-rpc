@@ -54,7 +54,7 @@ public class ClientDistribuition extends Thread {
 					vetor2.add(new Integer(b));
 				}
 			}
-
+			
 			ClientDistribuition thread1 = new ClientDistribuition(1);
 			ClientDistribuition thread2 = new ClientDistribuition(2);
 			ClientDistribuition thread3 = new ClientDistribuition(3);
@@ -102,18 +102,27 @@ public class ClientDistribuition extends Thread {
 
 	public void run() {
 		try {
+			int tam = (vetor1.size()/2);
+			int init, end;
 			switch (this.server) {
-			case 1:
-				this.callServer(0, 1, vetor1, vetor2, 8081);
+			case 1:				
+				end =(tam/4)*1;
+				this.callServer(0, end, vetor1, vetor2, 8081);
 				break;
 			case 2:
-				this.callServer(1, 2, vetor1, vetor2, 8082);
+				init = (tam/4)*1;
+				end =(tam/4)*2;
+				this.callServer(init, end, vetor1, vetor2, 8082);
 				break;
 			case 3:
-				this.callServer(2, 3, vetor1, vetor2, 8083);
+				init = (tam/4)*2;
+				end =(tam/4)*3;
+				this.callServer(init, end, vetor1, vetor2, 8083);
 				break;
 			case 4:
-				this.callServer(3, 4, vetor1, vetor2, 8084);
+				init = (tam/4)*3;
+				init += tam%4;
+				this.callServer(init, tam, vetor1, vetor2, 8084);
 				break;
 			default:
 				break;
@@ -131,7 +140,7 @@ public class ClientDistribuition extends Thread {
 			params.addElement(end);
 			params.addElement(vetor1);
 			params.addElement(vetor2);
-			params.addElement(4);
+			params.addElement(2);
 
 			XmlRpcClient xmlRpcClient = new XmlRpcClient("http://localhost:" + port + "/RPC2");
 			Object resultSum = xmlRpcClient.execute("atividade3.sum", params);

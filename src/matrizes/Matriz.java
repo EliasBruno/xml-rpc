@@ -8,7 +8,6 @@ public class Matriz {
 		Vector resultado = new Vector();
 		int matrizA[][] = this.convertMatrixToBi(soma1, dim);
 		int matrizB[][] = this.convertMatrixToBi(soma2, dim);
-
 		for (int i = start; i < end; i++) {
 			for (int j = 0; j < dim; j++) {
 				resultado.add((matrizA[i][j] + matrizB[i][j]));
@@ -33,11 +32,11 @@ public class Matriz {
 		return resultado;
 	}
 
-	public int[][] convertMatrixToBi(Vector vetor, int tam) {
-		int altura = vetor.size() / tam;
-		int[][] ret = new int[altura][tam];
+	public int[][] convertMatrixToBi(Vector vetor, int largura) {
+		int altura = vetor.size() / largura;
+		int[][] ret = new int[altura][largura];
 		for (int i = 0; i < vetor.size(); i++) {
-			ret[i / tam][i % tam] = (int) vetor.get(i);
+			ret[i / largura][i % largura] = (int) vetor.get(i);
 		}
 		return ret;
 	}

@@ -36,7 +36,7 @@ public class Client {
 					vetor1.add(new Integer(a));
 				}
 			}
-
+			System.out.println(vetor1.size());
 			Vector vetor2 = new Vector();
 			for (int i = 0; i < n; i++) {
 				for (int j = 0; j < p; j++) {

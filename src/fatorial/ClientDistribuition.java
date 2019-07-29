@@ -87,12 +87,14 @@ public class ClientDistribuition extends Thread {
 
 			XmlRpcClient xmlRpcClient = new XmlRpcClient("http://localhost:" + port + "/RPC2");
 			Vector params = new Vector();
+			System.out.println(end+"|"+start);
 
 			params.addElement(end.toString());
 			params.addElement(start.toString());
-			Object result = xmlRpcClient.execute("atividade1.fatorial", params);
+			Object result = xmlRpcClient.execute("atividade1.calculate", params);
 			vetor.add(result);
 		} catch (Exception e) {
+			System.err.println(e.getMessage());
 		}
 	}
 }

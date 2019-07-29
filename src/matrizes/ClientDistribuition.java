@@ -73,26 +73,26 @@ public class ClientDistribuition extends Thread {
 			FileWriter fileSum = new FileWriter("sum.txt");
 			PrintWriter WfileSum = new PrintWriter(fileSum);
 			String text = "";
-			for (int i = 0; i < vectorResultSoma.size(); i++) {
-				String resultSum = vectorResultSoma.get(i).toString();
+			//for (int i = 0; i < vectorResultSoma.size(); i++) {
+				String resultSum = vectorResultSoma.toString();
 				if (!resultSum.isEmpty()) {
 					text = resultSum.replaceAll(",", ";").replaceAll("]", "/");
 					WfileSum.printf(text);
 				}
 				System.out.println("A soma é: " + resultSum);
-			}
+			//}
 			fileSum.close();
 
 			FileWriter fileMult = new FileWriter("multi.txt");
 			PrintWriter WfileMult = new PrintWriter(fileMult);
-			for (int i = 0; i < vectorResultMulti.size(); i++) {
-				String resultMult = vectorResultMulti.get(i).toString();
+			//for (int i = 0; i < vectorResultMulti.size(); i++) {
+				String resultMult = vectorResultMulti.toString();
 				if (!resultMult.isEmpty()) {
 					text = resultMult.replaceAll(",", ";").replaceAll("]", "/");
 					WfileMult.printf(text);
 				}
 				System.out.println("O produto é: " + resultMult);
-			}
+			//}
 			fileMult.close();
 
 		} catch (Exception exception) {
@@ -102,27 +102,27 @@ public class ClientDistribuition extends Thread {
 
 	public void run() {
 		try {
-			int tam = (vetor1.size()/2);
+			int tam = (vetor1.size()/4);
 			int init, end;
 			switch (this.server) {
 			case 1:				
-				end =(tam/4)*1;
+				end =1;
 				this.callServer(0, end, vetor1, vetor2, 8081);
 				break;
 			case 2:
-				init = (tam/4)*1;
-				end =(tam/4)*2;
+				init = 1;
+				end =2;
 				this.callServer(init, end, vetor1, vetor2, 8082);
 				break;
 			case 3:
-				init = (tam/4)*2;
-				end =(tam/4)*3;
+				init = 2;
+				end =3;
 				this.callServer(init, end, vetor1, vetor2, 8083);
 				break;
 			case 4:
-				init = (tam/4)*3;
-				init += tam%4;
-				this.callServer(init, tam, vetor1, vetor2, 8084);
+				init = 3;
+				//init += tam%4;
+				this.callServer(init, 4, vetor1, vetor2, 8084);
 				break;
 			default:
 				break;
@@ -140,10 +140,11 @@ public class ClientDistribuition extends Thread {
 			params.addElement(end);
 			params.addElement(vetor1);
 			params.addElement(vetor2);
-			params.addElement(2);
+			params.addElement(4);
 
 			XmlRpcClient xmlRpcClient = new XmlRpcClient("http://localhost:" + port + "/RPC2");
 			Object resultSum = xmlRpcClient.execute("atividade3.sum", params);
+			System.out.println();
 			vectorResultSoma.add(resultSum);
 
 			Object resultMult = xmlRpcClient.execute("atividade3.mult", params);

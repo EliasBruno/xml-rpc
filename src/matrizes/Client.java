@@ -36,7 +36,6 @@ public class Client {
 					vetor1.add(new Integer(a));
 				}
 			}
-			System.out.println(vetor1.size());
 			Vector vetor2 = new Vector();
 			for (int i = 0; i < n; i++) {
 				for (int j = 0; j < p; j++) {
@@ -55,27 +54,27 @@ public class Client {
 			FileWriter fileSum = new FileWriter("sumOneServer.txt");
 			PrintWriter WfileSum = new PrintWriter(fileSum);
 			String text = "";
-			for (int i = 0; i < soma.size(); i++) {
-				String resultSum = soma.get(i).toString();
+			//for (int i = 0; i < soma.size(); i++) {
+				String resultSum = soma.toString();
 				if (!resultSum.isEmpty()) {
 					text = resultSum.replaceAll(",", ";").replaceAll("]", "/");
 					WfileSum.printf(text);
 				}
 				System.out.println("A soma é: " + soma);
-			}
+			//}
 			fileSum.close();
 
 			Vector mult = ((Vector) result2);
 			FileWriter fileMult = new FileWriter("multiOneServer.txt");
 			PrintWriter WfileMult = new PrintWriter(fileMult);
-			for (int i = 0; i < mult.size(); i++) {
-				String resultMult = mult.get(i).toString();
+			//for (int i = 0; i < mult.size(); i++) {
+				String resultMult = mult.toString();
 				if (!resultMult.isEmpty()) {
 					text = resultMult.replaceAll(",", ";").replaceAll("]", "/");
 					WfileMult.printf(text);
 				}
 				System.out.println("O produto é: " + mult);
-			}
+			//}
 			fileMult.close();
 
 		} catch (Exception exception) {

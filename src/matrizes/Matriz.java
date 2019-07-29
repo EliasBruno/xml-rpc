@@ -5,11 +5,14 @@ import java.util.Vector;
 public class Matriz {
 
 	public Vector sum(int start, int end, Vector soma1, Vector soma2, int dim) {
+		System.out.println(start+"|"+end);
 		Vector resultado = new Vector();
 		int matrizA[][] = this.convertMatrixToBi(soma1, dim);
 		int matrizB[][] = this.convertMatrixToBi(soma2, dim);
+		System.out.println(matrizA.length);
 		for (int i = start; i < end; i++) {
 			for (int j = 0; j < dim; j++) {
+				System.out.println(i+"|"+j);
 				resultado.add((matrizA[i][j] + matrizB[i][j]));
 			}
 		}
@@ -21,11 +24,18 @@ public class Matriz {
 
 		int matrizA[][] = this.convertMatrixToBi(mult1, dim);
 		int matrizB[][] = this.convertMatrixToBi(mult2, dim);
+		int matrizC[][] = new int[end][dim];
 		for (int i = start; i < end; i++) {
 			for (int j = 0; j < dim; j++) {
 				for (int k = 0; k < dim; k++) {
-					resultado.add((matrizA[i][k] * matrizB[k][j]));
+					matrizC[i][j] += matrizA[i][k] * matrizB[k][j];
 				}
+			}
+		}
+		
+		for (int i = start; i < end; i++) {
+			for (int j = 0; j < dim; j++) {
+				resultado.add(matrizC[i][j]);
 			}
 		}
 

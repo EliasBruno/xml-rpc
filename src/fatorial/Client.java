@@ -1,6 +1,5 @@
 package fatorial;
 
-import java.math.BigInteger;
 import java.util.*;
 
 import helma.xmlrpc.XmlRpcClient;
@@ -22,7 +21,6 @@ public class Client {
 				params.addElement(number);
 				Object result = server.execute("sample.fatorial", params);
 
-				// BigInteger sum = ((BigInteger) result);
 				System.out.println("O fatorial de " + number + " é " + result);
 			}
 		} catch (Exception exception) {
